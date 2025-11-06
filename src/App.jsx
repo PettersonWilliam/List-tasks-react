@@ -24,6 +24,18 @@ function App() {
 		}
 	]);
 
+	function addTaskSubmit(title, description) {
+		setTasks([
+			...tasks,
+			{
+				id: tasks.length + 1,
+				title,
+				description,
+				completed: false
+			}
+		]);
+	}
+
 	function onTaskClick(taskId) {
 		const newTasks = tasks.map(task => {
 			if (task.id === taskId) {
@@ -45,12 +57,12 @@ function App() {
 
 	return (
 		<div className='w-screen h-screen bg-slate-500 flex justify-center p-6'>
-			<div className='w-[500px]'>
-				<h1 className='text-3xl text-slate-100 font-bold text-center'>
+			<div className='w-[500px] mb-4'>
+				<h1 className='text-3xl text-slate-100 font-bold text-center mb-4'>
 					Gerenciador de Tarefas
 				</h1>
-				<AddTasks />
-				<Tasks tasks={tasks} onTaskClick={onTaskClick} onClickRemoveTask={onClickRemoveTask} />
+				<AddTasks onAddTaskSubmit={ addTaskSubmit }/>
+				<Tasks tasks={tasks} onTaskClick={ onTaskClick } onClickRemoveTask={ onClickRemoveTask } />
 			</div>
 		</div>
 	)
