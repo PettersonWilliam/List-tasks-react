@@ -11,21 +11,29 @@ function AddTasks({ onAddTaskSubmit }) {
 				placeholder='Digite o título da tarefa'
 				className='border border-slate-300 outline-slate-700 px-4 py-2 rounded-md'
 				value={title}
-				onChange={e => setTitle(e.target.value)}
+				onChange={event => setTitle(event.target.value)}
 			/>
 			<input
 				type="text"
 				placeholder="Digite a descrição da tarefa"
 				className='border border-slate-300 outline-slate-700 px-4 py-2 rounded-md'
 				value={description}
-				onChange={e => setDescription(e.target.value)}
+				onChange={event => setDescription(event.target.value)}
 			/>
 			<button 
 				className='px-4 py-2 font-medium text-white bg-slate-500 rounded-md outline-slate-700 disabled:opacity-50 disabled:cursor-not-allowed'
 				disabled={!title || !description }
-				onClick={() => onAddTaskSubmit(title, description)}
+				onClick={ 
+					() => {
+						if (!title || !description) return;
+
+						onAddTaskSubmit(title, description);
+						setTitle('');
+						setDescription('');
+					}
+				}
 			>
-				{ !title || !description ? 'Adicionar Tarefa' : 'Adicionando Tarefa...' }
+				{ (title && !description) || (!title && description) ? 'Adicionando Tarefa...' : 'Adicionar Tarefa' }
 			</button>
 		</div>
 	)

@@ -52,7 +52,7 @@ function App() {
 
 	function onClickRemoveTask(taskId) {
 		const newTasks = tasks.filter(task => task.id !== taskId);
-		setTasks(newTasks); 
+		setTasks(newTasks);
 	}
 
 	return (
@@ -62,7 +62,7 @@ function App() {
 					Gerenciador de Tarefas
 				</h1>
 				<AddTasks onAddTaskSubmit={ addTaskSubmit }/>
-				<Tasks tasks={tasks} onTaskClick={ onTaskClick } onClickRemoveTask={ onClickRemoveTask } />
+				<Tasks tasks={ tasks } onTaskClick={ onTaskClick } onClickRemoveTask={ onClickRemoveTask } />
 			</div>
 		</div>
 	)
