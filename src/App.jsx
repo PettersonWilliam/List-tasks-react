@@ -1,28 +1,15 @@
 import Tasks from './components/Tasks';
 import AddTasks from './components/AddTasks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-	const [tasks, setTasks] = useState([
-		{
-			id: 1,
-			title: 'Estudar React',
-			description: 'Estudar React para criar uma aplicação de gerenciador de tarefas',
-			completed: false
-		},
-		{
-			id: 2,
-			title: 'Estudar Node.js',
-			description: 'Estudar Node.js para criar uma aplicação de gerenciador de tarefas',
-			completed: false
-		},
-		{
-			id: 3,
-			title: 'Estudar Tailwind CSS',
-			description: 'Estudar Tailwind CSS para criar uma aplicação de gerenciador de tarefas',
-			completed: false
-		}
-	]);
+	
+	const [tasks, setTasks] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []);
+
+	//ARMAZENANDO AS TAREFAS NO LOCAL STORAGE
+    useEffect(() => {
+		localStorage.setItem('tasks', JSON.stringify(tasks));
+	}, [tasks]);
 
 	function addTaskSubmit(title, description) {
 		setTasks([

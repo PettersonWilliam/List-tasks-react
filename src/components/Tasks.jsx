@@ -13,7 +13,7 @@ function Tasks({ tasks, onTaskClick, onClickRemoveTask }) {
         <ul className='space-y-4 p-6 bg-slate-200 rounded-md shadow mt-6'>
             {tasks.map(task => (
                 <li key={task.id} className="flex gap-2">
-                    <button onClick={ () => onTaskClick(task) } 
+                    <button onClick={ () => onTaskClick(task.id) } 
                         className={`space-y-4 p-2 w-full text-left bg-slate-400 rounded-md shadow outline-slate-700 ${task.completed && 'line-through'}`}>
                         {task.title}
                     </button>
