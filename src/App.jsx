@@ -11,6 +11,22 @@ function App() {
 		localStorage.setItem('tasks', JSON.stringify(tasks));
 	}, [tasks]);
 
+	//BUSCANDO AS TAREFAS NA API: JSONPLACEHOLDER
+	//para usar o async/await precisamos criar dentro do hook useEffect uma função assíncrona e depois no final executar ela
+	// criando o hook com "[]vazio", para executar apenas uma vez, assim que entrar na página. O useEffect executa uma vez, após o componente ser renderizado.
+	useEffect(() => {
+		async function fetchTasks() {
+			const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=6', {
+				method: 'GET'
+			});
+
+			const data = await response.json();
+			setTasks(data);
+		}
+
+		fetchTasks();
+	}, []);
+
 	function addTaskSubmit(title, description) {
 		setTasks([
 			...tasks,
