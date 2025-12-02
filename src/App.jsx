@@ -1,5 +1,6 @@
 import Tasks from './components/Tasks';
 import AddTasks from './components/AddTasks';
+import Title from './components/Title';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -61,9 +62,7 @@ function App() {
 	return (
 		<div className='w-screen h-screen bg-slate-500 flex justify-center p-6'>
 			<div className='w-[500px] mb-4'>
-				<h1 className='text-3xl text-slate-100 font-bold text-center mb-4'>
-					Gerenciador de Tarefas
-				</h1>
+				<Title>Gerenciador de Tarefas</Title>
 				<AddTasks onAddTaskSubmit={ addTaskSubmit }/>
 				<Tasks tasks={ tasks } onTaskClick={ onTaskClick } onClickRemoveTask={ onClickRemoveTask } />
 			</div>

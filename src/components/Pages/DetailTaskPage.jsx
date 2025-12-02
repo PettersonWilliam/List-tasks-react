@@ -1,5 +1,6 @@
 import { useSearchParams, useNavigate } from 'react-router-dom'; // TODA VEZ QUE IMPORTAMOS ALGO COMO "use..." O MESMO É UM HOOK
 import { ArrowLeftIcon } from 'lucide-react';
+import Title from '../Title';
 
 function DetailTaskPage() {
 	const [ searchParams ] = useSearchParams();
@@ -13,13 +14,11 @@ function DetailTaskPage() {
 				<div className='flex items-center gap-2'>
 					<span title="Voltar">
 						<ArrowLeftIcon
-							className='w-6 h-6 text-slate-100 cursor-pointer'
+							className='w-6 h-6 text-slate-100 cursor-pointer mb-4'
 							onClick={() => { navigate('/home') }}
 						/>
 					</span>
-					<h1 className='text-3xl text-slate-100 font-bold text-center'>
-						Detalhes da tarefa
-					</h1>
+					<Title>Detalhes da tarefa</Title>
 				</div>
 	
 				<div className=' bg-slate-200 rounded-md p-4'>
