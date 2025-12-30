@@ -1,7 +1,7 @@
 import { ChevronRightIcon, Trash2Icon, PencilIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Button from './ButtonActionList';
-function Tasks({ tasks, onTaskClick, onClickRemoveTask, onStartEditTask }) {
+function Tasks({ tasks, onTaskClick, onClickRemoveTask, onStartEditTask, isEditing }) {
     const navigate = useNavigate();
 
     const detailTask = task => {
@@ -27,7 +27,12 @@ function Tasks({ tasks, onTaskClick, onClickRemoveTask, onStartEditTask }) {
                             <Button onClick={() => onStartEditTask(task)} title="Editar">
                                 <PencilIcon />
                             </Button>
-                            <Button onClick={ () => onClickRemoveTask(task.id) } title="Excluir">
+                            <Button
+                                onClick={ () => onClickRemoveTask(task.id) }
+                                title={ isEditing ? 'Finalize a edição para excluir' : 'Excluir' }
+                                disabled={ isEditing }
+                                className='p-2 bg-slate-400 rounded-md shadow outline-slate-700 disabled:opacity-50 disabled:cursor-not-allowed'
+                            >
                                 <Trash2Icon />
                             </Button>
                         </li>

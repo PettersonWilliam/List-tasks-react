@@ -81,6 +81,7 @@ function App() {
 					onTaskClick={ onTaskClick }
 					onClickRemoveTask={ onClickRemoveTask }
 					onStartEditTask={ onStartEditTask }
+					isEditing={ Boolean(editingTask) }
 				/>
 			</div>
 		</div>
