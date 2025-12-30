@@ -1,7 +1,7 @@
-import { ChevronRightIcon, Trash2Icon } from 'lucide-react';
+import { ChevronRightIcon, Trash2Icon, PencilIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Button from './ButtonActionList';
-function Tasks({ tasks, onTaskClick, onClickRemoveTask }) {
+function Tasks({ tasks, onTaskClick, onClickRemoveTask, onStartEditTask }) {
     const navigate = useNavigate();
 
     const detailTask = task => {
@@ -14,17 +14,20 @@ function Tasks({ tasks, onTaskClick, onClickRemoveTask }) {
         // <> Nao e um componente, mais caso precise retornar mais de um elemento, ou seja mais de uma ação, deve ser usado o fragment
         <>
             {tasks.length > 0 ? (
-                <ul className='space-y-4 p-6 bg-slate-200 rounded-md shadow mt-6'>
+                <ul className='space-y-4 p-6 bg-slate-200 rounded-md shadow mt-6 max-h-[672px] overflow-y-auto'>
                     {tasks.map(task => (
                         <li key={task.id} className="flex gap-2">
                             <Button onClick={ () => onTaskClick(task.id) } 
                                 className={`space-y-4 p-2 w-full text-left bg-slate-400 rounded-md shadow outline-slate-700 ${task.completed && 'line-through'}`}>
                                 {task.title}
                             </Button>
-                            <Button onClick={ () => detailTask(task) }>
+                            <Button onClick={ () => detailTask(task) } title="Detalhes">
                                 <ChevronRightIcon />
                             </Button>
-                            <Button onClick={ () => onClickRemoveTask(task.id) }>
+                            <Button onClick={() => onStartEditTask(task)} title="Editar">
+                                <PencilIcon />
+                            </Button>
+                            <Button onClick={ () => onClickRemoveTask(task.id) } title="Excluir">
                                 <Trash2Icon />
                             </Button>
                         </li>
