@@ -67,8 +67,8 @@ function App() {
 	}
 
 	return (
-		<div className='w-screen h-screen bg-slate-500 flex justify-center p-6'>
-			<div className='w-[500px] mb-4'>
+		<div className='w-screen h-screen bg-slate-500 flex justify-center p-6 overflow-hidden'>
+			<div className='w-[500px] mb-4 flex flex-col h-full min-h-0'>
 				<Title>Gerenciador de Tarefas</Title>
 				<AddTasks
 					onAddTaskSubmit={ addTaskSubmit }
@@ -76,13 +76,15 @@ function App() {
 					onEditTaskSubmit={ onEditTaskSubmit }
 					onCancelEditTask={ onCancelEditTask }
 				/>
-				<Tasks
-					tasks={ tasks }
-					onTaskClick={ onTaskClick }
-					onClickRemoveTask={ onClickRemoveTask }
-					onStartEditTask={ onStartEditTask }
-					isEditing={ Boolean(editingTask) }
-				/>
+				<div className='flex-1 min-h-0'>
+					<Tasks
+						tasks={ tasks }
+						onTaskClick={ onTaskClick }
+						onClickRemoveTask={ onClickRemoveTask }
+						onStartEditTask={ onStartEditTask }
+						isEditing={ Boolean(editingTask) }
+					/>
+				</div>
 			</div>
 		</div>
 	)

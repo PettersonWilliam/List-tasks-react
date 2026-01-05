@@ -12,9 +12,9 @@ function Tasks({ tasks, onTaskClick, onClickRemoveTask, onStartEditTask, isEditi
         // espaçamento entre as tarefas na vertical x, y
         // <> <> é um fragment, é um grupo de elementos que não serão renderizados no DOM, mas serão renderizados no componente
         // <> Nao e um componente, mais caso precise retornar mais de um elemento, ou seja mais de uma ação, deve ser usado o fragment
-        <>
+        <div className='flex-1 min-h-0'>
             {tasks.length > 0 ? (
-                <ul className='space-y-4 p-6 bg-slate-200 rounded-md shadow mt-6 max-h-[672px] overflow-y-auto'>
+                <ul className='space-y-4 p-6 bg-slate-200 rounded-md shadow mt-6 h-full overflow-y-auto'>
                     {tasks.map(task => (
                         <li key={task.id} className="flex gap-2">
                             <Button onClick={ () => onTaskClick(task.id) } 
@@ -40,7 +40,7 @@ function Tasks({ tasks, onTaskClick, onClickRemoveTask, onStartEditTask, isEditi
                 </ul>
                 ) : null
             }
-        </>
+        </div>
     );
 }
 
