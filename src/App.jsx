@@ -17,10 +17,15 @@ function App() {
 	// Para ativar, reimplemente o useEffect com a chamada ao endpoint e setTasks.
 
 	function addTaskSubmit(title, description) {
+		const nextId = tasks.reduce((maxId, task) => {
+			const idNum = typeof task.id === 'number' ? task.id : parseInt(task.id, 10);
+			return Number.isFinite(idNum) && idNum > maxId ? idNum : maxId;
+		}, 0) + 1;
+
 		setTasks([
 			...tasks,
 			{
-				id: tasks.length + 1,
+				id: nextId,
 				title,
 				description,
 				completed: false
