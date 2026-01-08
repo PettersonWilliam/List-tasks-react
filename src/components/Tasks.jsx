@@ -14,7 +14,7 @@ function Tasks({ tasks, onTaskClick, onClickRemoveTask, onStartEditTask, isEditi
         // <> Nao e um componente, mais caso precise retornar mais de um elemento, ou seja mais de uma ação, deve ser usado o fragment
         <div className='flex-1 min-h-0'>
             {tasks.length > 0 ? (
-                <ul className='space-y-4 p-6 pb-12 bg-slate-200 rounded-md shadow mt-10 overflow-y-auto max-h-[70vh]'>
+                <ul className='space-y-4 p-4 pb-8 bg-slate-200 rounded-md shadow mt-10 overflow-y-auto scroll-smooth max-h-[520px] md:max-h-[600px] min-h-[80px]'>
                     {tasks.map((task, index) => (
                         <li key={`${task.id}-${index}`} className="flex gap-2">
                             <Button onClick={ () => onTaskClick(task.id) } 
