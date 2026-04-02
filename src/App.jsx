@@ -90,8 +90,8 @@ function App() {
 	}
 
 	return (
-		<div className='min-h-screen w-full bg-slate-500 flex justify-center px-4 py-4 sm:p-6 overflow-x-hidden overflow-y-auto'>
-			<div className='w-full max-w-[500px] mb-4 flex flex-col min-h-full min-w-0'>
+		<div className='w-full min-h-[100dvh] bg-slate-500 flex justify-center px-4 py-4 sm:p-6 overflow-x-hidden overflow-y-auto'>
+			<div className='w-full max-w-[500px] mb-4 flex flex-col min-h-full min-w-0 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)]'>
 				<Title>Gerenciador de Tarefas</Title>
 				<AddTasks
 					onAddTaskSubmit={ addTaskSubmit }
@@ -99,7 +99,7 @@ function App() {
 					onEditTaskSubmit={ onEditTaskSubmit }
 					onCancelEditTask={ onCancelEditTask }
 				/>
-				<div className='flex-1 min-h-0 pb-safe'>
+				<div className='flex-1 min-h-0'>
 					<Tasks
 						tasks={ tasks }
 						onTaskClick={ onTaskClick }
