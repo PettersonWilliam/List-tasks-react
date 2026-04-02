@@ -23,12 +23,20 @@ function AddTasks({ onAddTaskSubmit, editingTask, onEditTaskSubmit, onCancelEdit
 				type="text"
 				placeholder='Digite o título da tarefa'
 				value={title}
+				autoComplete="off"
+				autoCorrect="off"
+				autoCapitalize="none"
+				spellCheck={false}
 				onChange={event => setTitle(event.target.value)}
 			/>
 			<Input
 				type="text"
 				placeholder="Digite a descrição da tarefa"
 				value={description}
+				autoComplete="off"
+				autoCorrect="off"
+				autoCapitalize="none"
+				spellCheck={false}
 				onChange={event => setDescription(event.target.value)}
 			/>
 			<div className='flex gap-2'>

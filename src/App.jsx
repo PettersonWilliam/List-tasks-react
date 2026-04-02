@@ -8,6 +8,10 @@ function App() {
 	const [tasks, setTasks] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []);
 	const [editingTask, setEditingTask] = useState(null);
 
+	function preserveUserText(value) {
+		return typeof value === 'string' ? value.trim() : '';
+	}
+
 	//ARMAZENANDO AS TAREFAS NO LOCAL STORAGE
     useEffect(() => {
 		localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -17,6 +21,13 @@ function App() {
 	// Para ativar, reimplemente o useEffect com a chamada ao endpoint e setTasks.
 
 	function addTaskSubmit(title, description) {
+		const normalizedTitle = preserveUserText(title);
+		const normalizedDescription = preserveUserText(description);
+
+		if (!normalizedTitle || !normalizedDescription) {
+			return;
+		}
+
 		const nextId = tasks.reduce((maxId, task) => {
 			const idNum = typeof task.id === 'number' ? task.id : parseInt(task.id, 10);
 			return Number.isFinite(idNum) && idNum > maxId ? idNum : maxId;
@@ -26,8 +37,8 @@ function App() {
 			...tasks,
 			{
 				id: nextId,
-				title,
-				description,
+				title: normalizedTitle,
+				description: normalizedDescription,
 				completed: false
 			}
 		]);
@@ -53,10 +64,17 @@ function App() {
 	}
 
 	function onEditTaskSubmit(taskId, newTitle, newDescription) {
+		const normalizedTitle = preserveUserText(newTitle);
+		const normalizedDescription = preserveUserText(newDescription);
+
+		if (!normalizedTitle || !normalizedDescription) {
+			return;
+		}
+
 		setTasks(prevTasks =>
 			prevTasks.map(task =>
 				task.id === taskId
-					? { ...task, title: newTitle, description: newDescription }
+					? { ...task, title: normalizedTitle, description: normalizedDescription }
 					: task
 			)
 		);
@@ -72,8 +90,8 @@ function App() {
 	}
 
 	return (
-		<div className='w-screen h-screen bg-slate-500 flex justify-center p-6 overflow-hidden'>
-			<div className='w-[500px] mb-4 flex flex-col h-full min-h-0'>
+		<div className='min-h-screen w-full bg-slate-500 flex justify-center px-4 py-4 sm:p-6 overflow-x-hidden overflow-y-auto'>
+			<div className='w-full max-w-[500px] mb-4 flex flex-col min-h-full min-w-0'>
 				<Title>Gerenciador de Tarefas</Title>
 				<AddTasks
 					onAddTaskSubmit={ addTaskSubmit }
@@ -81,7 +99,7 @@ function App() {
 					onEditTaskSubmit={ onEditTaskSubmit }
 					onCancelEditTask={ onCancelEditTask }
 				/>
-				<div className='flex-1 min-h-0'>
+				<div className='flex-1 min-h-0 pb-safe'>
 					<Tasks
 						tasks={ tasks }
 						onTaskClick={ onTaskClick }
