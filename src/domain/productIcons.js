@@ -1,4 +1,3 @@
-// Product identity is inferred locally from the name; no manual classification is needed.
 export const PRODUCT_ICONS = [
 	{ id: 'rice', emoji: '🍚', label: 'Arroz', words: /\barroz\b/ },
 	{
@@ -151,7 +150,7 @@ export function getProductIcon(product) {
 
 export function getProductCategory(name) {
 	const text = normalize(name);
-	// Hygiene and cleaning terms can share a bottle icon, so classify them first.
+
 	if (
 		/\b(sabonete|shampoo|xampu|condicionador|dental|dente|dentes|desodorante|absorvente|fralda|papel higienico)\b/.test(
 			text,

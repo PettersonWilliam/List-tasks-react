@@ -18,9 +18,6 @@ function Tasks({
 	};
 
 	return (
-		// espaçamento entre as tarefas na vertical x, y
-		// <> <> é um fragment, é um grupo de elementos que não serão renderizados no DOM, mas serão renderizados no componente
-		// <> Nao e um componente, mais caso precise retornar mais de um elemento, ou seja mais de uma ação, deve ser usado o fragment
 		<div className="flex-1 min-h-0 min-w-0">
 			{tasks.length > 0 ? (
 				<ul

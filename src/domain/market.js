@@ -103,15 +103,15 @@ export function validState(state) {
 	);
 }
 
-// The old key is deliberately left untouched: it is the original-data backup.
 export function loadMarket(storage) {
 	try {
 		const saved = storage.getItem(STORAGE_KEY);
 		if (saved !== null) {
 			const parsed = JSON.parse(saved);
+
 			if (!validState(parsed)) throw new Error('invalid saved data');
-			// Preserve existing fractional values; require explicit correction instead of rounding them.
-			parsed.products = parsed.products.map((p) =>
+
+			parsed.products = parsed.products.map(p =>
 				quantityValid(p.stock) && quantityValid(p.target)
 					? { ...p, category: getProductCategory(p.name) }
 					: {
