@@ -1,6 +1,7 @@
 import { Pencil, Trash2 } from 'lucide-react';
 import { formatQuantity, needed } from '../../domain/market';
 import ProductIcon from './ProductIcon';
+import ProductNotes from './ProductNotes';
 import QuantityControl from './QuantityControl';
 
 export default function ProductCard({
@@ -26,11 +27,7 @@ export default function ProductCard({
 							? `Quero ter ${formatQuantity(product.target)} ${product.unit}`
 							: 'Revise unidade e quantidades'}
 					</div>
-					{product.notes && (
-						<p className="product-notes">
-							<strong>OBS:</strong> {product.notes}
-						</p>
-					)}
+					<ProductNotes notes={product.notes} />
 					{reviewing && (
 						<div className="row-actions">
 							<button

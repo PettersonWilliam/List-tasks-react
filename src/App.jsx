@@ -16,6 +16,7 @@ import {
 } from './domain/market';
 import ProductCard from './components/market/ProductCard';
 import ProductIcon from './components/market/ProductIcon';
+import ProductNotes from './components/market/ProductNotes';
 import QuantityControl from './components/market/QuantityControl';
 import ProductEditor from './components/market/ProductEditor';
 import Dialog from './components/market/Dialog';
@@ -214,7 +215,11 @@ export default function App() {
 								label: 'Compras',
 								Icon: ShoppingCart,
 							},
-							{ key: 'history', label: 'Histórico', Icon: History },
+							{
+								key: 'history',
+								label: 'Histórico',
+								Icon: History,
+							},
 						].map(({ key, label, Icon }) => (
 							<button
 								key={key}
@@ -449,11 +454,11 @@ export default function App() {
 														'As marcações do carrinho e os ajustes da lista serão descartados. Os produtos conferidos serão mantidos; desmarque ou edite para ajustar.',
 														() => {
 															dispatch({
-																type: 'review'
+																type: 'review',
 															});
 															navigate('pantry');
 														},
-														'Voltar à conferência'
+														'Voltar à conferência',
 													)
 												}
 											>
@@ -557,6 +562,18 @@ export default function App() {
 																					? 'Já está no carrinho'
 																					: `Faltava ${formatQuantity(o.suggested)} ${o.unit}`}
 																		</div>
+																		<ProductNotes
+																			notes={
+																				state.products.find(
+																					(
+																						product,
+																					) =>
+																						product.id ===
+																						o.id,
+																				)
+																					?.notes
+																			}
+																		/>
 																	</div>
 																</div>
 																<QuantityControl
